@@ -221,6 +221,7 @@ export default function BottomTabBar({
           height: getDefaultTabBarHeight() + paddingBottom,
           paddingBottom,
           paddingHorizontal: Math.max(insets.left, insets.right),
+          backgroundColor: "red"
         },
         style,
       ]}
@@ -239,10 +240,14 @@ export default function BottomTabBar({
             });
 
             if (!focused && !event.defaultPrevented) {
-              navigation.dispatch({
-                ...CommonActions.navigate(route.name),
-                target: state.key,
-              });
+              navigation.dispatch(CommonActions.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: route.name,
+                  }
+                ]
+              }));
             }
           };
 
